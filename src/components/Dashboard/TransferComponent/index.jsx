@@ -1,8 +1,11 @@
 import React from 'react'
-
 import './index.scss'
+const {useState, useEffect} = React;
 
 export default (props) =>{
+    const [form, setForm] = useState(false);
+    const [showModalError, setShowModalError] = useState(false);
+
     return (
         <div className="c_transfer__container">
             <h3 className="e-p1">Transferencias</h3>
