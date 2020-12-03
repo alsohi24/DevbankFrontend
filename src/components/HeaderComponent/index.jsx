@@ -1,6 +1,8 @@
 import React from 'react';
 import {ReactComponent as NotificationIcon} from '@icons/notification.svg';
 import {ReactComponent as UserIcon} from '@icons/user.svg';
+import BtnSolicitud from '@components/Dashboard/TokenSolicitudComponent';
+
 import { Link } from 'react-router-dom';
 
 import './index.scss';
@@ -14,7 +16,11 @@ export default () =>{
                 <Link to='/agencias' className="c_header__navbar_item e-text-medium e-p4">Agencias</Link>
                 <Link to='/productos' className="c_header__navbar_item e-text-medium e-p4">Productos</Link>
             </nav>
+            <div className="c_header__navbar_item e-text-medium e-p4" >
+                    <BtnSolicitud  />
+                    </div>
             <ul className="c_header__options">
+            
                 <li  className="c_header__notificacion_icon">
                     <NotificationIcon/>
                 </li>
