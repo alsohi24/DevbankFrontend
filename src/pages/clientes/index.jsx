@@ -44,11 +44,11 @@ export default () => {
                     tdocId: form.tipoDocumento
                 }
             },
-            roles: [
-                {
-                    rolId: 2,
-                }
-            ],
+            // roles: [
+            //     {
+            //         rolId: 2,
+            //     }
+            // ],
             usuClave: form.clave,
             usuEstado: 1,
             usuNombre: `${form.nombres} ${form.apellidoPaterno} ${form.apellidoMaterno}`
@@ -102,8 +102,9 @@ export default () => {
         });
         ListaController.getTipoDocumento().then(({data}) => {
             const result = data.data;
-            setTiposDocumento([{tdocId:1, tdoc_descripcion: "DNI"}, {tdocId:2,tdoc_descripcion:  "CARNET DE EXTRANJERÍA"}]);
-            //setTiposDocumento(result);
+            //setTiposDocumento([{tdocId:1, tdoc_descripcion: "DNI"}, {tdocId:2,tdoc_descripcion:  "CARNET DE EXTRANJERÍA"}]);
+            console.log(result);
+            setTiposDocumento(result);
         })
         
     }, [])
@@ -199,7 +200,7 @@ export default () => {
                                 { tiposDocumento &&
                                     tiposDocumento.map((documento, index) => {
                                         return (
-                                            <option key={index} value={documento.tdocId}>{documento.tdoc_descripcion}</option>
+                                            <option key={index} value={documento.tdocId}>{documento.tdocDescripcion}</option>
                                         )
                                     })
                                 }
