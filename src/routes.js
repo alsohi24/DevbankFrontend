@@ -29,8 +29,8 @@ const PrivateRoute = ({ component: Component, roles, ...rest }) => (
       // // check if route is restricted by role
       // if (roles && roles.indexOf(loggedInUser.role) === -1) {
       //   // role not authorised so redirect to home page
-      if(!sessionStorage.getItem("token")){ 
-        return <Redirect to={{ pathname: '/login' }} />
+      if (!sessionStorage.getItem("token")) {
+        return <Redirect to={{ pathname: "/login" }} />;
       }
       // }
 
@@ -42,12 +42,36 @@ const PrivateRoute = ({ component: Component, roles, ...rest }) => (
 
 const routes = [
   // auth and account
-  { path: "/login", name: "Login", component: Login, route: Route},
-  { path: "/register", name: "Register", component: Register, route: Route},
-  { path: "/clientes", name: "Clientes", component: Clientes, route: Route , route: PrivateRoute},
-  { path: "/productos", name: "Productos", component: Productos, route: Route , route: PrivateRoute},
-  { path: "/agencias", name: "Agencias", component: Agencias, route: Route , route: PrivateRoute},
-  { path: "/cuentas", name: "Cuentas", component: Cuentas, route: Route , route: PrivateRoute},
+  { path: "/login", name: "Login", component: Login, route: Route },
+  { path: "/register", name: "Register", component: Register, route: Route },
+  {
+    path: "/clientes",
+    name: "Clientes",
+    component: Clientes,
+    route: Route,
+    route: PrivateRoute,
+  },
+  {
+    path: "/productos",
+    name: "Productos",
+    component: Productos,
+    route: Route,
+    route: PrivateRoute,
+  },
+  {
+    path: "/agencias",
+    name: "Agencias",
+    component: Agencias,
+    route: Route,
+    route: PrivateRoute,
+  },
+  {
+    path: "/cuentas",
+    name: "Cuentas",
+    component: Cuentas,
+    route: Route,
+    route: PrivateRoute,
+  },
 
   // other pages
   {

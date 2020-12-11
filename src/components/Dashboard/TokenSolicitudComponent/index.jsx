@@ -29,17 +29,17 @@ export default (props) =>{
         //SESSION
         const body = {
             "soliEstado":"1",
-            "soliUsuId":"1",
+            "soliUsu":sessionStorage.getItem("user_name") ,
             "soliOperacion":"CREAR"
         }
-        // SolicitudesController.postProcesarSolicitud(body).then(({data}) => {
-        //     const result = data.data;
-        //     console.log(data)
-        // }).catch((error) => {
-        //     console.log('Error', error);
-        //     //setShowModal(false);
-        //     setShowModalError(true);
-        // });
+        SolicitudesController.postProcesarSolicitud(body).then(({data}) => {
+            const result = data.data;
+            console.log(data)
+        }).catch((error) => {
+            console.log('Error', error);
+            //setShowModal(false);
+            setShowModalError(true);
+        });
         setCodigo(true);
     }
     function validarCodigo(){

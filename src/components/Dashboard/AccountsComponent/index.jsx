@@ -12,6 +12,8 @@ export default (props) => {
     const [form, setForm] = useState({});
     const [tipoCuenta, setTipoCuenta] = useState([]);
     const [productos, setProductos] = useState([]);
+    const [cuentas, setCuentas] = useState([]);
+    const [lstCuentas, setLstCuentas] = useState([]);
     const [showModalAccount, setShowModalAccount] = useState(false);
     function handleForm(event) {
         let inputName = event.target.name;
@@ -22,6 +24,7 @@ export default (props) => {
     useEffect(()=>{
         ListaController.getTipoCuenta().then(({data}) => {
             const result = data.data;
+            console.log(result)
             setTipoCuenta(result);
         })
 
@@ -30,7 +33,17 @@ export default (props) => {
             console.log(result)
             setProductos(result);
         })
-    }, [])
+        ClienteController.getCuentasByCliente().then(({data}) => {
+            const result = data.data;
+            console.log(result)
+            setCuentas(result);
+        })
+        ClienteController.getCuentas().then(result =>{
+            const resultado = result.data.data;
+            setLstCuentas(resultado);
+            console.log(resultado);
+          })
+    }, [lstCuentas])
 
     function crearCuenta(){
         const body =  {
@@ -60,12 +73,14 @@ export default (props) => {
     }
 
     return (
+
         <div className="c_accounts__container">
             <div>
+              
                 <div className="c_accounts__balance">
                     <div className="c_accounts__balance_total">
                         <h4 className="e-p1">Saldo</h4>
-                        <p className="e-p2 e-p3:md">S/780.00</p>
+                        <p className="e-p2 e-p3:md">{lstCuentas && lstCuentas[0]}</p>
                     </div>
                     <div className="c_accounts__balance_limit">
                         <h4 className="e-p3 e-p5:md">Limite de Credito</h4>
@@ -88,6 +103,7 @@ export default (props) => {
                         </div>
                     </div>
                 </div>
+                
                 <ButtonComponent className="c_accounts__button_create" action={()=>{setShowModalAccount(true)}}>Crear nueva cuenta</ButtonComponent>
                 <div className="c_accounts__card_selected">
                     <CardComponent type={1}/>

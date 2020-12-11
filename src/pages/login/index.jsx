@@ -44,15 +44,20 @@ export default (props) => {
                 ClienteController.getByUsername(form.username).then(result => {
                     const user = result.data.data;
                     console.log(user);
+                    console.log(user.usuNombre);
                     sessionStorage.setItem("user_id", user.usuId);
+                    sessionStorage.setItem("user_name", user.usuNombre);
                     sessionStorage.setItem("rol", user.roles[0].rolId);
                     redirectDashboard();
                 })
             }
         }).catch((error) => {
             console.log('Error', error);
+            //redirectDashboard();
+
             setShowModalError(true);
         }).finally(() => {
+            //redirectDashboard();
             setIsLoading(false);
             setDisabledForm(false);
         });

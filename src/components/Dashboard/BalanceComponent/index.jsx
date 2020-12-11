@@ -67,6 +67,7 @@ export default (props) =>{
         }
       }).catch(error=> console.log(error)).finally()
       console.log("sessionStorage.getItem",sessionStorage.getItem("user_id"))
+      console.log("sessionStorage.getItem",sessionStorage.getItem("user_name"))
       ClienteController.getCuentas().then(result =>{
         const resultado = result.data.data;
         setListCuentas(resultado);
@@ -81,7 +82,7 @@ export default (props) =>{
                 <label className="e-p5">Cuenta</label>
                 <select name="cuenta" onChange={handleForm} className="c_transfer__select e-p6">
                     <option>Seleccione una Cuenta</option> 
-                    {listCuentas.length > 0 &&
+                    {listCuentas &&
                         listCuentas.map((serv,index) =>{
                             return (<option key={index} value={serv.ctaNuCuenta}>{serv.ctaNuCuenta}</option> )
                           }

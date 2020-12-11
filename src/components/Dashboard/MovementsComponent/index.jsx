@@ -1,10 +1,27 @@
-import React from 'react';
+import React, {useState, useEffect} from 'react';
+import ClienteController from '@services/ClienteController/';
 
 import './index.scss'
+
 
 export default (props)=>{
 
     let list = [1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24]
+    const [isLoading, setIsLoading] = useState(false)
+    const [movimientos, setMovimientos] = useState(false)
+    useEffect(() => {
+        setIsLoading(true);
+        ClienteController.getMovimientoByUser().then((result)=>{
+            if(result.status == 200){
+                setMovimientos(result.data);
+            }
+        }).catch((error)=>{
+            console.log('Error', error);
+        }).finally(()=>{
+            setIsLoading(false)
+        });
+        
+    }, [])
 
     return (
         <div className="c_movements__container">

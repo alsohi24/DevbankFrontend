@@ -1,13 +1,14 @@
 
 import React, {useState} from 'react'
 import TransferenciaController from '@services/TransferenciaController/';
+import ClienteController from '@services/ClienteController/';
+
 import ButtonComponent from '@components/ButtonComponent/';
 import './index.scss'
 import InputMask from 'react-input-mask';
 import ModalComponent from '@components/ModalComponent/';
-import ButtonComponent from '@components/ButtonComponent/';
 
-const {useState, useEffect} = React;
+const { useEffect} = React;
 
 export default (props) =>{
 
@@ -16,6 +17,7 @@ export default (props) =>{
     const [isLoading, setIsLoading] = useState(false)
     const [isSuccess, setIsSuccess] = useState(false)
     const [listCuentas, setListCuentas] = useState([]);
+    const [showModalError, setShowModalError] = useState(false);
 
     function validatePermisosOperacion(){
         setShowModalError(true)
@@ -41,6 +43,13 @@ export default (props) =>{
             setIsLoading(false);
         })
     }
+    // function solicitud(){
+    //     ClienteController.getSolicitud(body).then(()=>{
+    //         setIsSuccess(true);
+    //     }).catch(()=>{
+    //         setIsSuccess(false);
+    //     })
+    // }
 
     function handleForm(event) {
         let inputName = event.target.name;
@@ -66,7 +75,7 @@ export default (props) =>{
 
             <div className="c_transfer__accounts_input_group">
                 <label className="e-p5">Cuenta Destino</label>
-                {/* <InputMask className="c_transfer__input e-p6" name="ctaNuCuenta" placeholder="0000 0000 0000 00"  mask="9999 9999 9999 99" maskChar=" " className="p_cuentas__field_input e-p2 e-p4:md" />
+                <InputMask className="c_transfer__input e-p6" name="ctaNuCuenta" placeholder="0000 0000 0000 00"  mask="9999 9999 9999 99" maskChar=" " className="p_cuentas__field_input e-p2 e-p4:md" />
             </div>
 
             <div className="c_transfer__footer">
@@ -84,8 +93,8 @@ export default (props) =>{
                 }
             >
                 <h4 className="e-h4">No cuenta con permisos para realizar esta operación</h4>
-            </ModalComponent> */}
-                <input  name="cuenta_destino" onChange={handleForm} className="c_transfer__input e-p6" placeholder="0000-0000-00000000000"></input>
+            </ModalComponent>
+                {/* <input  name="cuenta_destino" onChange={handleForm} className="c_transfer__input e-p6" placeholder="0000-0000-00000000000"></input>
             </div>
 
             <div className="c_transfer__accounts_input_group">
@@ -101,7 +110,7 @@ export default (props) =>{
             <div className="c_transfer__footer">
                 <input  name="terminos" onChange={handleForm} type="checkbox" name="" id=""/><label className="e-p4 e-p6:md">Acepto los terminos y condiciones</label>
                 <button className="c_transfer__button e-p3 e-p6:md" action={()=>{submitTransferencia()}} isLoading={isLoading}>Transferir</button>
-            </div>
+            </div> */}
             {(isLoading || isSuccess) &&
                 <div className="c_transfer__layer">
                     {isLoading &&
