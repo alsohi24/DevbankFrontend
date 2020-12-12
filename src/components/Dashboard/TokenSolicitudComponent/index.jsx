@@ -46,10 +46,20 @@ export default (props) =>{
         //SESSION
         const body = {
             "soliEstado":"1",
-            "soliUsuId":"1",
-            "soliOperacion":"CREAR"
+            "soliClaveOTP":form.codigo,
+            "soliOperacion":"VALIDAR OTP"
         }
-        setShowModal(false)
+        console.log(body);
+        SolicitudesController.postProcesarSolicitud(body).then(({data}) => {
+            const result = data.data;
+            setShowSuccess(true)
+            console.log(data)
+        }).catch((error) => {
+            console.log('Error', error);
+            //setShowModal(false);
+            setShowModalError(true);
+        });
+        //setShowModal(false)
         setShowSuccess(true)
         //setCodigo(true);
     }

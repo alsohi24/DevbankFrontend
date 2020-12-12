@@ -78,14 +78,18 @@
   }
 }
 
-.p_cliente__iframe_image{
+.p_cliente__iframe_image {
   width: 100%;
   height: 90%;
 }
 
-.p_cliente__modal_body{
+.p_cliente__modal_body {
   display: flex;
-  & > div{
-    margin: 0 8px
+  & > div {
+    margin: 0 8px;
   }
+}
+.p_cliente__iframe_image > html > body > img {
+  width: 50px;
+  height: 50px;
 }
